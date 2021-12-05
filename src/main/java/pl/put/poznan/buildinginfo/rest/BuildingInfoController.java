@@ -20,7 +20,7 @@ public class BuildingInfoController {
         logger.debug(String.valueOf(building));
 
         // perform the transformation, you should run your logic here, below is just a silly example
-        return "OK";
+        return "OK1";
     }
 
 }
