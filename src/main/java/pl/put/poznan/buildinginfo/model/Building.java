@@ -2,6 +2,7 @@ package pl.put.poznan.buildinginfo.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import pl.put.poznan.buildinginfo.logic.Localization;
 
 import java.util.List;
 
@@ -9,7 +10,7 @@ import java.util.List;
  * Data Transfer Object class for building
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Building {
+public class Building implements Localization {
 
     @JsonProperty("id")
     private String id;
@@ -51,5 +52,17 @@ public class Building {
                 ", name='" + name + '\'' +
                 ", floors=" + floors +
                 '}';
+    }
+
+    @Override
+    public Integer calculateSurface() {
+        return floors.stream()
+                .map(Floor::calculateSurface)
+                .reduce(0, Integer::sum);
+    }
+
+    @Override
+    public Integer calculateVolume() {
+        throw new UnsupportedOperationException();
     }
 }
