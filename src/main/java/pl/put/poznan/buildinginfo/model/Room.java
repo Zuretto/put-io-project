@@ -5,6 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.math.BigDecimal;
 
+/**
+ * Data Transfer Object class for room
+ */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Room {
 

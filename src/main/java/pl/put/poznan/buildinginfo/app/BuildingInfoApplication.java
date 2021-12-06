@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.boot.web.embedded.undertow.UndertowServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
@@ -15,10 +14,16 @@ public class BuildingInfoApplication {
 
     private static final Logger log = LoggerFactory.getLogger(BuildingInfoApplication.class);
 
+    /**
+     * main method of the application - starts the app
+     */
     public static void main(String[] args) {
         SpringApplication.run(BuildingInfoApplication.class, args);
     }
 
+    /**
+     * Bean object responsible for mapping JSON objects into Java Objects
+     */
     @Bean
     public RestTemplate restTemplate(RestTemplateBuilder builder) {
         return builder.build();

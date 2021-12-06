@@ -8,7 +8,9 @@ import pl.put.poznan.buildinginfo.model.*;
 
 import java.util.List;
 
-
+/**
+ * Controller class for surface REST endpoints
+ */
 @RestController
 @RequestMapping("/rest/v1/surface")
 public class BuildingInfoController {
