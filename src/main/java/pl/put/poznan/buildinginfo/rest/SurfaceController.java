@@ -1,30 +1,29 @@
 package pl.put.poznan.buildinginfo.rest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
-import pl.put.poznan.buildinginfo.model.Building;
-import pl.put.poznan.buildinginfo.model.LocalizationType;
+import pl.put.poznan.buildinginfo.logic.SurfaceService;
+import pl.put.poznan.buildinginfo.model.*;
 
 /**
  * Controller class for surface REST endpoints
  */
 @RestController
 @RequestMapping("/rest/v1/surface")
-public class BuildingInfoController {
+public class SurfaceController {
 
-    private static final Logger logger = LoggerFactory.getLogger(BuildingInfoController.class);
+    private static final Logger logger = LoggerFactory.getLogger(SurfaceController.class);
+    private final SurfaceService helper = new SurfaceService();
 
     @RequestMapping(method = RequestMethod.GET, produces = "application/json")
-    public String getSurface(@RequestBody Building building, @RequestParam(value="id") String id,
-                      @RequestParam(value= "type") LocalizationType localizationType) {
+    public SurfaceInformation getSurface(@RequestBody Building building, @RequestParam(value = "id") String id,
+                                         @RequestParam(value = "type") LocalizationType localizationType) {
 
-        // log the parameters
-     //   logger.debug(String.valueOf(building));
 
-        // perform the transformation, you should run your logic here, below is just a silly example
-        return "OK1";
+            return helper.calculateSurface(building,id,localizationType);
     }
-
 }
+
 
 
