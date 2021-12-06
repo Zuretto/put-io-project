@@ -17,7 +17,7 @@ public class BuildingInfoController {
                       @RequestParam(value= "type") LocalizationType localizationType) {
 
         // log the parameters
-        logger.debug(String.valueOf(building));
+     //   logger.debug(String.valueOf(building));
 
         // perform the transformation, you should run your logic here, below is just a silly example
         return "OK1";
