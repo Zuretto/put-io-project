@@ -5,6 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
+/**
+ * Data Transfer Object class for floor
+ */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Floor {
 

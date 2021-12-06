@@ -5,6 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
+/**
+ * Data Transfer Object class for building
+ */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Building {
 

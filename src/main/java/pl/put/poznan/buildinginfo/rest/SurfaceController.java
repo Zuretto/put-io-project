@@ -5,7 +5,9 @@ import org.springframework.web.bind.annotation.*;
 import pl.put.poznan.buildinginfo.model.Building;
 import pl.put.poznan.buildinginfo.model.LocalizationType;
 
-
+/**
+ * Controller class for surface REST endpoints
+ */
 @RestController
 @RequestMapping("/rest/v1/surface")
 public class BuildingInfoController {
