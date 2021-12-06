@@ -6,16 +6,14 @@ import org.springframework.web.bind.annotation.*;
 import pl.put.poznan.buildinginfo.logic.SurfaceService;
 import pl.put.poznan.buildinginfo.model.*;
 
-import java.util.List;
-
 /**
  * Controller class for surface REST endpoints
  */
 @RestController
 @RequestMapping("/rest/v1/surface")
-public class BuildingInfoController {
+public class SurfaceController {
 
-    private static final Logger logger = LoggerFactory.getLogger(BuildingInfoController.class);
+    private static final Logger logger = LoggerFactory.getLogger(SurfaceController.class);
     private final SurfaceService helper = new SurfaceService();
 
     @RequestMapping(method = RequestMethod.GET, produces = "application/json")
