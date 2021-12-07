@@ -97,6 +97,6 @@ public class Room implements Localization {
 
     @Override
     public Integer calculateVolume() {
-        throw new UnsupportedOperationException();
+        return this.cube;
     }
 }

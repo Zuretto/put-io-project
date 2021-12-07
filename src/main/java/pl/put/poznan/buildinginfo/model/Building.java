@@ -63,6 +63,8 @@ public class Building implements Localization {
 
     @Override
     public Integer calculateVolume() {
-        throw new UnsupportedOperationException();
+        return floors.stream()
+                .map(Floor::calculateVolume)
+                .reduce(0, Integer::sum);
     }
 }

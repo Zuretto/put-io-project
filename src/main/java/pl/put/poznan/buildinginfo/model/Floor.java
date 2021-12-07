@@ -63,6 +63,8 @@ public class Floor implements Localization {
 
     @Override
     public Integer calculateVolume() {
-        throw new UnsupportedOperationException();
+        return rooms.stream()
+                .map(Room::getCube)
+                .reduce(0, Integer::sum);
     }
 }
