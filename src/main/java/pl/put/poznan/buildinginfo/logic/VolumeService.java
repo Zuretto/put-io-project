@@ -45,7 +45,7 @@ public class VolumeService {
             inf.setName(floorOptional.get().getName());
 
         } else if (type == LocalizationType.ROOM) {
-            logger.debug("calculating surface of the room: " + id);
+            logger.debug("calculating volume of the room: " + id);
 
             Optional<Room> roomOptional = building.getFloors().stream()
                     .flatMap(x -> x.getRooms().stream())

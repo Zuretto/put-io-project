@@ -40,7 +40,7 @@ public class VolumeInformation {
 
     @Override
     public String toString() {
-        return "SurfaceInformation{" +
+        return "VolumeInformation{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", type=" + type +

@@ -10,10 +10,10 @@ import pl.put.poznan.buildinginfo.model.*;
  * Controller class for volume REST endpoints
  */
 @RestController
-@RequestMapping("/rest/v1/surface")
+@RequestMapping("/rest/v1/volume")
 public class VolumeController {
 
-    private static final Logger logger = LoggerFactory.getLogger(SurfaceController.class);
+    private static final Logger logger = LoggerFactory.getLogger(VolumeController.class);
     private final VolumeService helper = new VolumeService();
 
     @RequestMapping(method = RequestMethod.GET, produces = "application/json")
