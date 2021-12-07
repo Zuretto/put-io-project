@@ -61,6 +61,10 @@ public class Floor implements Localization {
                 .reduce(0, Integer::sum);
     }
 
+    /**
+     * method responsible for calculating Volume of Floor
+     * @return integer value of sum of all Volume Rooms
+     */
     @Override
     public Integer calculateVolume() {
         return rooms.stream()

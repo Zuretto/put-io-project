@@ -61,6 +61,10 @@ public class Building implements Localization {
                 .reduce(0, Integer::sum);
     }
 
+    /**
+     * method responsible for calculating Volume of Building
+     * @return integer value of sum of all Volume Floors
+     */
     @Override
     public Integer calculateVolume() {
         return floors.stream()

@@ -1,5 +1,9 @@
 package pl.put.poznan.buildinginfo.model;
 
+/**
+ * class responsible for storing information about: id, name, type and volume Cube
+ * this class is only for returning data to client
+ */
 public class VolumeInformation {
     String id;
     String name;

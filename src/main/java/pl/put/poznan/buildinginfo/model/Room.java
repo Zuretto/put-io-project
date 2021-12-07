@@ -95,6 +95,10 @@ public class Room implements Localization {
         return this.area;
     }
 
+    /**
+     * method responsible for returning Volume of Room
+     * @return integer value of Volume
+     */
     @Override
     public Integer calculateVolume() {
         return this.cube;

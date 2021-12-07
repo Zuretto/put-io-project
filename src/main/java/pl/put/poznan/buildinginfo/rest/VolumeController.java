@@ -15,7 +15,13 @@ public class VolumeController {
 
     private static final Logger logger = LoggerFactory.getLogger(VolumeController.class);
     private final VolumeService helper = new VolumeService();
-
+    /**
+     * rest method responsible for calculating Volume
+     * @param building json object provided in request body
+     * @param id rest of localization provided in request body
+     * @param localizationType type of localization provided in request body
+     * @return object containing information of cube volume
+     */
     @RequestMapping(method = RequestMethod.GET, produces = "application/json")
     public VolumeInformation getVolume(@RequestBody Building building, @RequestParam(value = "id") String id,
                                          @RequestParam(value = "type") LocalizationType localizationType) {
