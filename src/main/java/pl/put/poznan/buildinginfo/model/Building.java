@@ -45,6 +45,10 @@ public class Building implements Localization {
         this.floors = floors;
     }
 
+    /**
+     * @return JSON file
+     */
+
     @Override
     public String toString() {
         return "Building{" +
@@ -54,6 +58,10 @@ public class Building implements Localization {
                 '}';
     }
 
+    /**
+     * Method responsible for calculating surface  of a building
+     * @return surface area as an integer
+     */
     @Override
     public Integer calculateSurface() {
         return floors.stream()

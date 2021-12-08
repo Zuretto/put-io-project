@@ -78,6 +78,9 @@ public class Room implements Localization {
         this.light = light;
     }
 
+    /**
+     * @return JSON file
+     */
     @Override
     public String toString() {
         return "Room{" +
@@ -90,6 +93,10 @@ public class Room implements Localization {
                 '}';
     }
 
+    /**
+     * method responsible for returning surface area of a room
+     * @return surface area of a room
+     */
     @Override
     public Integer calculateSurface() {
         return this.area;

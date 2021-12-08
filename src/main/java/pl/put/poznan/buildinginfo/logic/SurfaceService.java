@@ -8,10 +8,20 @@ import pl.put.poznan.buildinginfo.model.*;
 
 import java.util.Optional;
 
+/**
+ * Class responsible for calculating surface
+ */
 public class SurfaceService {
 
     private static final Logger logger = LoggerFactory.getLogger(SurfaceService.class);
 
+    /**
+     * method responsible for calculating surface area of specific Building, Floor or Room based on type and id
+     * @param building object containing floors
+     * @param id id of localization
+     * @param type type of localization
+     * @return surface area of a building, a floor or a room
+     */
     public SurfaceInformation calculateSurface(Building building, String id, LocalizationType type) {
         SurfaceInformation inf = new SurfaceInformation();
         int surfaceArea = 0;

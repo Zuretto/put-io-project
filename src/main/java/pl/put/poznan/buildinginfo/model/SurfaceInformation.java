@@ -1,5 +1,9 @@
 package pl.put.poznan.buildinginfo.model;
 
+/**
+ * Class responsible for storing information about: id, name, type and surface area
+ * This class is responsible for returning information to client
+ */
 public class SurfaceInformation {
     String id;
     String name;
@@ -38,6 +42,9 @@ public class SurfaceInformation {
         this.surface = surface;
     }
 
+    /**
+     * @return JSON file
+     */
     @Override
     public String toString() {
         return "SurfaceInformation{" +

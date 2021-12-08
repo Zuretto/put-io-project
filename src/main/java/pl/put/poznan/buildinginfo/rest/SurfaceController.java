@@ -16,6 +16,13 @@ public class SurfaceController {
     private static final Logger logger = LoggerFactory.getLogger(SurfaceController.class);
     private final SurfaceService helper = new SurfaceService();
 
+    /**
+     * Rest method responsible for calculating surface area
+     * @param building json object provided in request body
+     * @param id rest of localization provided in request body
+     * @param localizationType type of localization provided in request body
+     * @return object containing information of surface area
+     */
     @RequestMapping(method = RequestMethod.GET, produces = "application/json")
     public SurfaceInformation getSurface(@RequestBody Building building, @RequestParam(value = "id") String id,
                                          @RequestParam(value = "type") LocalizationType localizationType) {

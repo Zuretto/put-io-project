@@ -42,6 +42,9 @@ public class VolumeInformation {
         this.volume = volume;
     }
 
+    /**
+     * @return JSON file
+     */
     @Override
     public String toString() {
         return "VolumeInformation{" +

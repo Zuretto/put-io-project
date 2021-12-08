@@ -45,6 +45,9 @@ public class Floor implements Localization {
         this.rooms = rooms;
     }
 
+    /**
+     * @return JSON file
+     */
     @Override
     public String toString() {
         return "Floor{" +
@@ -54,6 +57,10 @@ public class Floor implements Localization {
                 '}';
     }
 
+    /**
+     * Method responsible for calculating surface of a floor in a building
+     * @return surface area of a floor as an integer
+     */
     @Override
     public Integer calculateSurface() {
         return rooms.stream()
