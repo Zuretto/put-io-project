@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import pl.put.poznan.buildinginfo.logic.Localization;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 /**
@@ -78,5 +80,25 @@ public class Building implements Localization {
         return floors.stream()
                 .map(Floor::calculateVolume)
                 .reduce(0, Integer::sum);
+    }
+
+    /**
+     * method responsible for calculating Heating of Floor
+     * @return BigDecimal value of sum of all Heating Floors
+     */
+    @Override
+    public BigDecimal calculateHeating() {
+        return floors.stream()
+                .map(Floor::calculateHeating)
+                .reduce(BigDecimal.valueOf(0), BigDecimal::add);
+    }
+
+    /**
+     * method responsible for calculating Energy Consumption of floor per cube
+     * @return BigDecimal value of Energy Consumption per volume unit in the building
+     */
+    @Override
+    public BigDecimal calculateEnergy() {
+        return this.calculateHeating().divide(BigDecimal.valueOf(this.calculateVolume()), 5, RoundingMode.HALF_UP);
     }
 }

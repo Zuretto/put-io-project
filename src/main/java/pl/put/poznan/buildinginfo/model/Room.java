@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import pl.put.poznan.buildinginfo.logic.Localization;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.math.RoundingMode;
 
 /**
  * Data Transfer Object class for room
@@ -109,5 +111,23 @@ public class Room implements Localization {
     @Override
     public Integer calculateVolume() {
         return this.cube;
+    }
+
+    /**
+     * method responsible for returning heating Room
+     * @return BigDecimal value of Heating
+     */
+    @Override
+    public BigDecimal calculateHeating() {
+        return this.heating;
+    }
+
+    /**
+     * method responsible for returning Energy consumption of Room per cube
+     * @return BigDecimal value of Energy Consumption per volume unit in the room
+     */
+    @Override
+    public BigDecimal calculateEnergy() {
+        return this.heating.divide(BigDecimal.valueOf(this.cube), 5, RoundingMode.HALF_UP);
     }
 }
