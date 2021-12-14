@@ -22,13 +22,13 @@ public interface Localization {
 
     /**
      * method responsible for calculating heating of the localization
-     * @return BigDecimal calculated volume
+     * @return BigDecimal calculated heating
      */
 
     BigDecimal calculateHeating();
     /**
      * method responsible for calculating energy consumption per cube of the localization
-     * @return Integer calculated volume
+     * @return Integer calculated energy consumption per volume unit
      */
     BigDecimal calculateEnergy();
 }
