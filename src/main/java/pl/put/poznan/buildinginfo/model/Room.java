@@ -130,4 +130,10 @@ public class Room implements Localization {
     public BigDecimal calculateEnergy() {
         return this.heating.divide(BigDecimal.valueOf(this.cube), 5, RoundingMode.HALF_UP);
     }
+
+    @Override
+    public BigDecimal calculateLight(){
+
+        return this.getLight().divide(BigDecimal.valueOf(getArea()));
+    }
 }

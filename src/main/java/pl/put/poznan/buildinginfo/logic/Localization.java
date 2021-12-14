@@ -31,4 +31,11 @@ public interface Localization {
      * @return BigDecimal calculated energy consumption per volume unit
      */
     BigDecimal calculateEnergy();
+
+    /**
+     * method responsible for calculating usage of light power per m^2
+     * @return BigDecimal calculated usage of light power per m^2
+     */
+    BigDecimal calculateLight();
+
 }

@@ -100,4 +100,13 @@ public class Floor implements Localization {
     public BigDecimal calculateEnergy() {
          return this.calculateHeating().divide(BigDecimal.valueOf(this.calculateVolume()), 5, RoundingMode.HALF_UP);
     }
+
+    @Override
+    public BigDecimal calculateLight(){
+        BigDecimal light = (rooms.stream()
+                            .map(Room::getLight)
+                            .reduce(BigDecimal.valueOf(0), BigDecimal::add));
+        BigDecimal surface = BigDecimal.valueOf(calculateSurface());
+        return light.divide(surface);
+    }
 }
