@@ -31,6 +31,7 @@ public class Building implements Localization {
         this.id = id;
     }
 
+    @Override
     public String getName() {
         return name;
     }
@@ -62,6 +63,7 @@ public class Building implements Localization {
 
     /**
      * Method responsible for calculating surface  of a building
+     *
      * @return surface area as an integer
      */
     @Override
@@ -73,6 +75,7 @@ public class Building implements Localization {
 
     /**
      * method responsible for calculating Volume of Building
+     *
      * @return integer value of sum of all Volume Floors
      */
     @Override
@@ -84,6 +87,7 @@ public class Building implements Localization {
 
     /**
      * method responsible for calculating Heating of Floor
+     *
      * @return BigDecimal value of sum of all Heating Floors
      */
     @Override
@@ -95,6 +99,7 @@ public class Building implements Localization {
 
     /**
      * method responsible for calculating Energy Consumption of floor per cube
+     *
      * @return BigDecimal value of Energy Consumption per volume unit in the building
      */
     @Override
@@ -103,7 +108,7 @@ public class Building implements Localization {
     }
 
     @Override
-    public BigDecimal calculateLight(){
+    public BigDecimal calculateLight() {
         return floors.stream()
                 .map(Floor::calculateLight)
                 .reduce(BigDecimal.valueOf(0), BigDecimal::add);

@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import pl.put.poznan.buildinginfo.logic.Localization;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.math.RoundingMode;
 
 /**
@@ -40,6 +39,7 @@ public class Room implements Localization {
         this.id = id;
     }
 
+    @Override
     public String getName() {
         return name;
     }
@@ -134,6 +134,6 @@ public class Room implements Localization {
     @Override
     public BigDecimal calculateLight(){
 
-        return this.getLight().divide(BigDecimal.valueOf(getArea()));
+        return this.getLight().divide(BigDecimal.valueOf(getArea()), 5, RoundingMode.HALF_UP);
     }
 }
