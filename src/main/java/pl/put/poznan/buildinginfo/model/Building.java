@@ -101,4 +101,11 @@ public class Building implements Localization {
     public BigDecimal calculateEnergy() {
         return this.calculateHeating().divide(BigDecimal.valueOf(this.calculateVolume()), 5, RoundingMode.HALF_UP);
     }
+
+    @Override
+    public BigDecimal calculateLight(){
+        return floors.stream()
+                .map(Floor::calculateLight)
+                .reduce(BigDecimal.valueOf(0), BigDecimal::add);
+    }
 }
