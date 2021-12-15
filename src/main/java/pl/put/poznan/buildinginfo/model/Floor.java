@@ -31,6 +31,7 @@ public class Floor implements Localization {
         this.id = id;
     }
 
+    @Override
     public String getName() {
         return name;
     }
@@ -107,6 +108,6 @@ public class Floor implements Localization {
                             .map(Room::getLight)
                             .reduce(BigDecimal.valueOf(0), BigDecimal::add));
         BigDecimal surface = BigDecimal.valueOf(calculateSurface());
-        return light.divide(surface);
+        return light.divide(surface, 5, RoundingMode.HALF_UP);
     }
 }
