@@ -33,7 +33,7 @@ public interface Localization {
     BigDecimal calculateEnergy();
 
     /**
-     * method responsible for calculating usage of light power per m^2
+     * method responsible for calculating light value per m^2 of given localization
      * @return BigDecimal calculated usage of light power per m^2
      */
     BigDecimal calculateLight();

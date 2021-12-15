@@ -131,6 +131,10 @@ public class Room implements Localization {
         return this.heating.divide(BigDecimal.valueOf(this.cube), 5, RoundingMode.HALF_UP);
     }
 
+    /**
+     * method responsible for returning light value per m^2 of a room
+     * @return BigDecimal value of light divided by surface of a room
+     */
     @Override
     public BigDecimal calculateLight(){
 

@@ -102,6 +102,10 @@ public class Building implements Localization {
         return this.calculateHeating().divide(BigDecimal.valueOf(this.calculateVolume()), 5, RoundingMode.HALF_UP);
     }
 
+    /**
+     * method responsible for returning light value per m^2 of a building
+     * @return BigDecimal value of light divided by surface of a room
+     */
     @Override
     public BigDecimal calculateLight(){
         return floors.stream()
