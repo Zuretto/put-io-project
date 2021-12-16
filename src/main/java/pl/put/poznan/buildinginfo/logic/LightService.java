@@ -6,7 +6,7 @@ import pl.put.poznan.buildinginfo.model.*;
 
 public class LightService {
 
-    private static final Logger logger = LoggerFactory.getLogger(SurfaceService.class);
+    private static final Logger logger = LoggerFactory.getLogger(LightService.class);
 
     private final LocalizationFinder localizationFinder = new LocalizationFinder();
 
