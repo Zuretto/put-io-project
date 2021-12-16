@@ -3,7 +3,6 @@ package pl.put.poznan.buildinginfo.logic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import pl.put.poznan.buildinginfo.model.Building;
 import pl.put.poznan.buildinginfo.model.Floor;
@@ -14,7 +13,7 @@ import java.util.Optional;
 
 public class LocalizationFinder {
 
-    private static final Logger logger = LoggerFactory.getLogger(EnergyService.class);
+    private static final Logger logger = LoggerFactory.getLogger(LocalizationFinder.class);
 
     public Localization findLocalizationInBuilding(Building building, LocalizationType type, String id) {
 
