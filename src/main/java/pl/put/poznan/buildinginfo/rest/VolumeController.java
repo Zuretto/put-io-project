@@ -25,7 +25,7 @@ public class VolumeController {
     @RequestMapping(method = RequestMethod.GET, produces = "application/json")
     public VolumeInformation getVolume(@RequestBody Building building, @RequestParam(value = "id") String id,
                                          @RequestParam(value = "type") LocalizationType localizationType) {
-
+        logger.info("Received GET request on /rest/v1/volume with ID: " + id + " and type: " + localizationType);
 
         return helper.calculateVolume(building,id,localizationType);
     }

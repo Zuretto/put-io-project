@@ -25,11 +25,10 @@ public class LocalizationFinder {
                     throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
                             "Building's ID is different than provided ID in the query param: " + id);
                 }
-
+                logger.debug("Found building with ID: " + id);
                 return building;
 
             case FLOOR:
-
                 Optional<Floor> floorOptional = building.getFloors().stream()
                         .filter(floor -> floor.getId().equals(id)).findFirst();
 
@@ -38,10 +37,10 @@ public class LocalizationFinder {
                             "Provided Building does not contain " + type + " with id: " + id);
                 }
 
+                logger.debug("Found floor with ID: " + id);
                 return floorOptional.get();
 
             case ROOM:
-
                 Optional<Room> roomOptional = building.getFloors().stream()
                         .flatMap(x -> x.getRooms().stream())
                         .filter(room -> room.getId().equals(id))
@@ -51,7 +50,7 @@ public class LocalizationFinder {
                     throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
                             "Provided Building does not contain " + type + " with id: " + id);
                 }
-
+                logger.debug("Found room with ID: " + id);
                 return roomOptional.get();
 
         }
