@@ -51,4 +51,10 @@ public interface Localization {
      */
     String getName();
 
+    /**
+     * method responsible for caluclating height of the localization
+     *
+     * @return BigDecimal height of the localization
+     */
+    BigDecimal calculateHeight();
 }

@@ -31,6 +31,10 @@ public class Room implements Localization {
     @JsonProperty("light")
     private BigDecimal light;
 
+    @JsonProperty("height")
+    private BigDecimal height;
+
+
     public String getId() {
         return id;
     }
@@ -80,6 +84,14 @@ public class Room implements Localization {
         this.light = light;
     }
 
+    public BigDecimal getHeight() {
+        return height;
+    }
+
+    public void setHeight(BigDecimal height) {
+        this.height = height;
+    }
+
     /**
      * @return JSON file
      */
@@ -92,6 +104,7 @@ public class Room implements Localization {
                 ", cube=" + cube +
                 ", heating=" + heating +
                 ", light=" + light +
+                ", heightOfRoom=" + height +
                 '}';
     }
 
@@ -136,4 +149,11 @@ public class Room implements Localization {
 
         return this.getLight().divide(BigDecimal.valueOf(getArea()), 5, RoundingMode.HALF_UP);
     }
+
+    /**
+     * method responsible for returning Height of Room
+     * @return BigDecimal value of Height
+     */
+    @Override
+    public BigDecimal calculateHeight(){return this.height;}
 }

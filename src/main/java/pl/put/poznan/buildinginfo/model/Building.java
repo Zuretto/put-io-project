@@ -20,6 +20,9 @@ public class Building implements Localization {
     @JsonProperty("name")
     private String name;
 
+    @JsonProperty("aboveSurface")
+    private BigDecimal aboveSurface;
+
     @JsonProperty("floors")
     private List<Floor> floors;
 
@@ -40,6 +43,10 @@ public class Building implements Localization {
         this.name = name;
     }
 
+    public BigDecimal getAboveSurface() {return aboveSurface;}
+
+    public void setAboveSurface(BigDecimal aboveSurface) {this.aboveSurface = aboveSurface;}
+
     public List<Floor> getFloors() {
         return floors;
     }
@@ -57,6 +64,7 @@ public class Building implements Localization {
         return "Building{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
+                ", aboveSurface='" + aboveSurface + '\'' +
                 ", floors=" + floors +
                 '}';
     }
@@ -112,5 +120,14 @@ public class Building implements Localization {
         return floors.stream()
                 .map(Floor::calculateLight)
                 .reduce(BigDecimal.valueOf(0), BigDecimal::add);
+    }
+
+    /**
+     * method responsible for returning Height of Building
+     * @return BigDecimal value of Height
+     */
+    @Override
+    public BigDecimal calculateHeight(){
+        return this.aboveSurface.add(floors.stream().map(Floor::calculateHeight).reduce(BigDecimal.ZERO,BigDecimal::add));
     }
 }
