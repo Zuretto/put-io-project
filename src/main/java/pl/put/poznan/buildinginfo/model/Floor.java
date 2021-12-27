@@ -6,6 +6,7 @@ import pl.put.poznan.buildinginfo.logic.Localization;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -19,6 +20,9 @@ public class Floor implements Localization {
 
     @JsonProperty("name")
     private String name;
+
+    @JsonProperty("heightOfCeiling")
+    private BigDecimal heightOfCeiling;
 
     @JsonProperty("rooms")
     private List<Room> rooms;
@@ -40,6 +44,10 @@ public class Floor implements Localization {
         this.name = name;
     }
 
+    public BigDecimal getHeightOfCeiling() {return heightOfCeiling;}
+
+    public void setHeightOfCeiling(BigDecimal heightOfCeiling) {this.heightOfCeiling = heightOfCeiling;}
+
     public List<Room> getRooms() {
         return rooms;
     }
@@ -56,6 +64,7 @@ public class Floor implements Localization {
         return "Floor{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
+                ", heightOfCeiling=" + heightOfCeiling + '\'' +
                 ", rooms=" + rooms +
                 '}';
     }
@@ -109,5 +118,12 @@ public class Floor implements Localization {
                             .reduce(BigDecimal.valueOf(0), BigDecimal::add));
         BigDecimal surface = BigDecimal.valueOf(calculateSurface());
         return light.divide(surface, 5, RoundingMode.HALF_UP);
+    }
+    /**
+     * method responsible for calculating Height of floor
+     * @return BigDecimal value of Height
+     */
+    public BigDecimal calculateHeight(){
+        return this.heightOfCeiling.add(rooms.stream().map(Room::getHeight).max(Comparator.naturalOrder()).get());
     }
 }
