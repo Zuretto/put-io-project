@@ -111,6 +111,10 @@ public class Floor implements Localization {
          return this.calculateHeating().divide(BigDecimal.valueOf(this.calculateVolume()), 5, RoundingMode.HALF_UP);
     }
 
+    /**
+     * method responsible for returning light value per m^2 of a floor
+     * @return BigDecimal value of light divided by surface of a floor
+     */
     @Override
     public BigDecimal calculateLight(){
         BigDecimal light = (rooms.stream()

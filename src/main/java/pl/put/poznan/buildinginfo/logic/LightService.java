@@ -11,7 +11,7 @@ public class LightService {
     private final LocalizationFinder localizationFinder = new LocalizationFinder();
 
     /**
-     * method responsible for calculating usage of light power per m^2 of Building, Floor or Room based on type and id
+     * method responsible for calculating light value per m^2 of Building, Floor or Room based on type and id
      *
      * @param building object containing floors
      * @param id       id of localization
