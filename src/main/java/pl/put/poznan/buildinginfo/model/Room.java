@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import pl.put.poznan.buildinginfo.logic.Localization;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.math.RoundingMode;
 
 /**
@@ -32,6 +31,10 @@ public class Room implements Localization {
     @JsonProperty("light")
     private BigDecimal light;
 
+    @JsonProperty("height")
+    private BigDecimal height;
+
+
     public String getId() {
         return id;
     }
@@ -40,6 +43,7 @@ public class Room implements Localization {
         this.id = id;
     }
 
+    @Override
     public String getName() {
         return name;
     }
@@ -80,6 +84,14 @@ public class Room implements Localization {
         this.light = light;
     }
 
+    public BigDecimal getHeight() {
+        return height;
+    }
+
+    public void setHeight(BigDecimal height) {
+        this.height = height;
+    }
+
     /**
      * @return JSON file
      */
@@ -92,6 +104,7 @@ public class Room implements Localization {
                 ", cube=" + cube +
                 ", heating=" + heating +
                 ", light=" + light +
+                ", heightOfRoom=" + height +
                 '}';
     }
 
@@ -138,6 +151,13 @@ public class Room implements Localization {
     @Override
     public BigDecimal calculateLight(){
 
-        return this.getLight().divide(BigDecimal.valueOf(getArea()));
+        return this.getLight().divide(BigDecimal.valueOf(getArea()), 5, RoundingMode.HALF_UP);
     }
+
+    /**
+     * method responsible for returning Height of Room
+     * @return BigDecimal value of Height
+     */
+    @Override
+    public BigDecimal calculateHeight(){return this.height;}
 }

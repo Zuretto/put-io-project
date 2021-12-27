@@ -26,7 +26,7 @@ public class EnergyController {
     @RequestMapping(method = RequestMethod.GET, produces = "application/json")
     public EnergyInformation getEnergy(@RequestBody Building building, @RequestParam(value = "id") String id,
                                          @RequestParam(value = "type") LocalizationType localizationType) {
-
+        logger.info("Received GET request on /rest/v1/energy with ID: " + id + " and type: " + localizationType );
 
         return helper.calculateEnergy(building,id,localizationType);
     }

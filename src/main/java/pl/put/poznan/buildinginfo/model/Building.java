@@ -20,6 +20,9 @@ public class Building implements Localization {
     @JsonProperty("name")
     private String name;
 
+    @JsonProperty("aboveSurface")
+    private BigDecimal aboveSurface;
+
     @JsonProperty("floors")
     private List<Floor> floors;
 
@@ -31,6 +34,7 @@ public class Building implements Localization {
         this.id = id;
     }
 
+    @Override
     public String getName() {
         return name;
     }
@@ -38,6 +42,10 @@ public class Building implements Localization {
     public void setName(String name) {
         this.name = name;
     }
+
+    public BigDecimal getAboveSurface() {return aboveSurface;}
+
+    public void setAboveSurface(BigDecimal aboveSurface) {this.aboveSurface = aboveSurface;}
 
     public List<Floor> getFloors() {
         return floors;
@@ -56,12 +64,14 @@ public class Building implements Localization {
         return "Building{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
+                ", aboveSurface='" + aboveSurface + '\'' +
                 ", floors=" + floors +
                 '}';
     }
 
     /**
      * Method responsible for calculating surface  of a building
+     *
      * @return surface area as an integer
      */
     @Override
@@ -73,6 +83,7 @@ public class Building implements Localization {
 
     /**
      * method responsible for calculating Volume of Building
+     *
      * @return integer value of sum of all Volume Floors
      */
     @Override
@@ -84,6 +95,7 @@ public class Building implements Localization {
 
     /**
      * method responsible for calculating Heating of Floor
+     *
      * @return BigDecimal value of sum of all Heating Floors
      */
     @Override
@@ -95,6 +107,7 @@ public class Building implements Localization {
 
     /**
      * method responsible for calculating Energy Consumption of floor per cube
+     *
      * @return BigDecimal value of Energy Consumption per volume unit in the building
      */
     @Override
@@ -107,9 +120,18 @@ public class Building implements Localization {
      * @return BigDecimal value of light divided by surface of a room
      */
     @Override
-    public BigDecimal calculateLight(){
+    public BigDecimal calculateLight() {
         return floors.stream()
                 .map(Floor::calculateLight)
                 .reduce(BigDecimal.valueOf(0), BigDecimal::add);
+    }
+
+    /**
+     * method responsible for returning Height of Building
+     * @return BigDecimal value of Height
+     */
+    @Override
+    public BigDecimal calculateHeight(){
+        return this.aboveSurface.add(floors.stream().map(Floor::calculateHeight).reduce(BigDecimal.ZERO,BigDecimal::add));
     }
 }

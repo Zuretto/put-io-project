@@ -22,6 +22,7 @@ public class LightController {
     @RequestMapping(method = RequestMethod.GET, produces = "application/json")
     public LightInformation getPower(@RequestBody Building building, @RequestParam(value = "id") String id,
                                      @RequestParam(value = "type") LocalizationType localizationType) {
+        logger.info("Received GET request on /rest/v1/light with ID: " + id + " and type: " + localizationType );
 
         return helper.calculateLight(building, id, localizationType);
     }
