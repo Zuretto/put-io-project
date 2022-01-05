@@ -31,7 +31,32 @@ class RoomTest {
 
         BigDecimal actualResult = room1.calculateLight();
 
-        Assertions.assertTrue(expectedResult.compareTo(actualResult)==0);
+        assertEquals(0, expectedResult.compareTo(actualResult));
 
+    }
+
+    @Test
+    public void testCalculateHeight(){
+        BigDecimal expectedResult = BigDecimal.valueOf(8);
+
+        Room room1 = new Room();
+        room1.setHeight(BigDecimal.valueOf(8));
+
+        BigDecimal actualResult = room1.calculateHeight();
+
+        assertEquals(0, expectedResult.compareTo(actualResult));
+
+    }
+
+    @Test
+    public void testCalculateVolume(){
+        Integer expectedResult = 300;
+
+        Room room1 = new Room();
+        room1.setCube(300);
+
+        Integer actualResult = room1.calculateVolume();
+
+        Assertions.assertEquals(expectedResult,actualResult);
     }
 }
