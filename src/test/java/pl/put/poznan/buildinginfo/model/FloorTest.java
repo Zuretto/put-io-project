@@ -47,7 +47,7 @@ class FloorTest {
         floor.setRooms(List.of(room1,room2,room3));
         BigDecimal actualResult = floor.calculateLight();
 
-        Assertions.assertTrue(actualResult.compareTo(expectedResult)==0);
+        Assertions.assertEquals(0, actualResult.compareTo(expectedResult));
     }
 
     @Test
@@ -67,6 +67,43 @@ class FloorTest {
 
         BigDecimal actualResult = floor.calculateEnergy();
 
-        Assertions.assertTrue(actualResult.compareTo(expectedResult) == 0);
+        Assertions.assertEquals(0, actualResult.compareTo(expectedResult));
+    }
+
+    @Test
+    public void testCalculateHeight(){
+        BigDecimal expectedResult = new BigDecimal(12);
+
+        Floor floor = new Floor();
+        Room room1 = new Room();
+        Room room2 = new Room();
+
+        floor.setHeightOfCeiling(BigDecimal.valueOf(1));
+        room1.setHeight(BigDecimal.valueOf(11));
+        room2.setHeight(BigDecimal.valueOf(8));
+
+        floor.setRooms(List.of(room1,room2));
+
+        BigDecimal actualResult = floor.calculateHeight();
+
+        Assertions.assertEquals(0, actualResult.compareTo(expectedResult));
+    }
+
+    @Test
+    public void testCalculateVolume() {
+        Integer expectedResult = 777;
+
+        Floor floor = new Floor();
+
+        Room room1 = new Room();
+        room1.setCube(444);
+
+        Room room2 = new Room();
+        room2.setCube(333);
+
+        floor.setRooms(List.of(room1, room2));
+
+        Integer actualResult = floor.calculateVolume();
+        Assertions.assertEquals(expectedResult, actualResult);
     }
 }
