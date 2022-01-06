@@ -2,7 +2,10 @@ package pl.put.poznan.buildinginfo.rest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
+import pl.put.poznan.buildinginfo.logic.LightService;
 import pl.put.poznan.buildinginfo.logic.SurfaceService;
 import pl.put.poznan.buildinginfo.model.*;
 
@@ -11,10 +14,12 @@ import pl.put.poznan.buildinginfo.model.*;
  */
 @RestController
 @RequestMapping("/rest/v1/surface")
+@Component
 public class SurfaceController {
 
     private static final Logger logger = LoggerFactory.getLogger(SurfaceController.class);
-    private final SurfaceService helper = new SurfaceService();
+
+    private SurfaceService helper;
 
     /**
      * Rest method responsible for calculating surface area
@@ -30,6 +35,11 @@ public class SurfaceController {
         logger.info("Received GET request on /rest/v1/surface with ID: " + id + " and type: " + localizationType);
 
         return helper.calculateSurface(building, id, localizationType);
+    }
+
+    @Autowired
+    public void setHelper(SurfaceService service) {
+        this.helper = service;
     }
 }
 

@@ -11,7 +11,7 @@ import org.springframework.web.client.RestTemplate;
 /**
  * main class of the Spring Boot Framework application
  */
-@SpringBootApplication(scanBasePackages = {"pl.put.poznan.buildinginfo.rest"})
+@SpringBootApplication(scanBasePackages = {"pl.put.poznan.buildinginfo.*"})
 public class BuildingInfoApplication {
 
     private static final Logger log = LoggerFactory.getLogger(BuildingInfoApplication.class);

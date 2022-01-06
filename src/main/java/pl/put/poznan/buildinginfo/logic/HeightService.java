@@ -2,13 +2,21 @@ package pl.put.poznan.buildinginfo.logic;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import pl.put.poznan.buildinginfo.model.*;
 
+@Component
 public class HeightService {
 
     private static final Logger logger = LoggerFactory.getLogger(HeightService.class);
 
-    private final LocalizationFinder localizationFinder = new LocalizationFinder();
+    private LocalizationFinder localizationFinder;
+
+    @Autowired
+    public void setLocalizationFinder(LocalizationFinder localizationFinder) {
+        this.localizationFinder = localizationFinder;
+    }
     /**
      * method responsible for calculating height of Building, Floor or Room based on type and id
      *
