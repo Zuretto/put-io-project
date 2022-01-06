@@ -7,41 +7,39 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.mockito.internal.util.reflection.FieldSetter;
 import org.springframework.test.context.junit4.SpringRunner;
-import pl.put.poznan.buildinginfo.logic.LightService;
+import pl.put.poznan.buildinginfo.logic.VolumeService;
 import pl.put.poznan.buildinginfo.model.Building;
-import pl.put.poznan.buildinginfo.model.LightInformation;
 import pl.put.poznan.buildinginfo.model.LocalizationType;
+import pl.put.poznan.buildinginfo.model.VolumeInformation;
 
 import javax.annotation.Resource;
-import java.math.BigDecimal;
 
 @RunWith(SpringRunner.class)
-class LightControllerTest {
+class VolumeControllerTest {
 
     @InjectMocks
     @Resource
-    LightController cut;
+    VolumeController cut;
 
     @Mock
-    LightService lightService;
+    VolumeService volumeService;
 
     private static final String id = "2";
 
 
     @BeforeEach
     public void setUp() {
-        cut = new LightController();
+        cut = new VolumeController();
 
         //mock
         MockitoAnnotations.initMocks(this);
 
-        LightInformation mockedLightInformation = new LightInformation();
+        VolumeInformation mockedVolumeInformation = new VolumeInformation();
 
-        Mockito.when(lightService.calculateLight(Mockito.any(), Mockito.eq("2"),
+        Mockito.when(volumeService.calculateVolume(Mockito.any(), Mockito.eq("2"),
                 Mockito.eq(LocalizationType.BUILDING)))
-                .thenReturn(mockedLightInformation);
+                .thenReturn(mockedVolumeInformation);
     }
 
     @Test
@@ -49,9 +47,9 @@ class LightControllerTest {
         Building building = new Building();
 
         //when
-        cut.getPower(building, id, LocalizationType.BUILDING);
+        cut.getVolume(building, id, LocalizationType.BUILDING);
 
         //then
-        Mockito.verify(lightService).calculateLight(building, id, LocalizationType.BUILDING);
+        Mockito.verify(volumeService).calculateVolume(building, id, LocalizationType.BUILDING);
     }
 }

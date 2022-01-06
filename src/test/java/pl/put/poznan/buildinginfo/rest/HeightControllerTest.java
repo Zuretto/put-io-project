@@ -7,41 +7,39 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.mockito.internal.util.reflection.FieldSetter;
 import org.springframework.test.context.junit4.SpringRunner;
-import pl.put.poznan.buildinginfo.logic.LightService;
+import pl.put.poznan.buildinginfo.logic.HeightService;
 import pl.put.poznan.buildinginfo.model.Building;
-import pl.put.poznan.buildinginfo.model.LightInformation;
+import pl.put.poznan.buildinginfo.model.HeightInformation;
 import pl.put.poznan.buildinginfo.model.LocalizationType;
 
 import javax.annotation.Resource;
-import java.math.BigDecimal;
 
 @RunWith(SpringRunner.class)
-class LightControllerTest {
+class HeightControllerTest {
 
     @InjectMocks
     @Resource
-    LightController cut;
+    HeightController cut;
 
     @Mock
-    LightService lightService;
+    HeightService heightService;
 
     private static final String id = "2";
 
 
     @BeforeEach
     public void setUp() {
-        cut = new LightController();
+        cut = new HeightController();
 
         //mock
         MockitoAnnotations.initMocks(this);
 
-        LightInformation mockedLightInformation = new LightInformation();
+        HeightInformation mockedHeightInformation = new HeightInformation();
 
-        Mockito.when(lightService.calculateLight(Mockito.any(), Mockito.eq("2"),
+        Mockito.when(heightService.calculateHeight(Mockito.any(), Mockito.eq("2"),
                 Mockito.eq(LocalizationType.BUILDING)))
-                .thenReturn(mockedLightInformation);
+                .thenReturn(mockedHeightInformation);
     }
 
     @Test
@@ -49,9 +47,9 @@ class LightControllerTest {
         Building building = new Building();
 
         //when
-        cut.getPower(building, id, LocalizationType.BUILDING);
+        cut.getHeight(building, id, LocalizationType.BUILDING);
 
         //then
-        Mockito.verify(lightService).calculateLight(building, id, LocalizationType.BUILDING);
+        Mockito.verify(heightService).calculateHeight(building, id, LocalizationType.BUILDING);
     }
 }

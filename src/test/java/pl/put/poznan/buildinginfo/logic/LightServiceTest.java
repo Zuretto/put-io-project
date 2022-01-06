@@ -35,10 +35,9 @@ class LightServiceTest {
 
     @BeforeEach
     public void setUp() {
-        //mock
-
         cut = new LightService();
 
+        //mock
         MockitoAnnotations.initMocks(this);
 
         building = Mockito.mock(Building.class);

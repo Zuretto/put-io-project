@@ -7,41 +7,39 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.mockito.internal.util.reflection.FieldSetter;
 import org.springframework.test.context.junit4.SpringRunner;
-import pl.put.poznan.buildinginfo.logic.LightService;
+import pl.put.poznan.buildinginfo.logic.EnergyService;
 import pl.put.poznan.buildinginfo.model.Building;
-import pl.put.poznan.buildinginfo.model.LightInformation;
+import pl.put.poznan.buildinginfo.model.EnergyInformation;
 import pl.put.poznan.buildinginfo.model.LocalizationType;
 
 import javax.annotation.Resource;
-import java.math.BigDecimal;
 
 @RunWith(SpringRunner.class)
-class LightControllerTest {
+class EnergyControllerTest {
 
     @InjectMocks
     @Resource
-    LightController cut;
+    EnergyController cut;
 
     @Mock
-    LightService lightService;
+    EnergyService energyService;
 
     private static final String id = "2";
 
 
     @BeforeEach
     public void setUp() {
-        cut = new LightController();
+        cut = new EnergyController();
 
         //mock
         MockitoAnnotations.initMocks(this);
 
-        LightInformation mockedLightInformation = new LightInformation();
+        EnergyInformation mockedEnergyInformation = new EnergyInformation();
 
-        Mockito.when(lightService.calculateLight(Mockito.any(), Mockito.eq("2"),
+        Mockito.when(energyService.calculateEnergy(Mockito.any(), Mockito.eq("2"),
                 Mockito.eq(LocalizationType.BUILDING)))
-                .thenReturn(mockedLightInformation);
+                .thenReturn(mockedEnergyInformation);
     }
 
     @Test
@@ -49,9 +47,9 @@ class LightControllerTest {
         Building building = new Building();
 
         //when
-        cut.getPower(building, id, LocalizationType.BUILDING);
+        cut.getEnergy(building, id, LocalizationType.BUILDING);
 
         //then
-        Mockito.verify(lightService).calculateLight(building, id, LocalizationType.BUILDING);
+        Mockito.verify(energyService).calculateEnergy(building, id, LocalizationType.BUILDING);
     }
 }
