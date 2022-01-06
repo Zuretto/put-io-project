@@ -35,6 +35,7 @@ class LightControllerTest {
     public void setUp() {
         cut = new LightController();
 
+        //mock
         MockitoAnnotations.initMocks(this);
 
         LightInformation mockedLightInformation = new LightInformation();
@@ -46,7 +47,6 @@ class LightControllerTest {
 
     @Test
     void testIfTheMethodIsCalledWithProperArguments() {
-        //mock
         Building building = new Building();
 
         //when
