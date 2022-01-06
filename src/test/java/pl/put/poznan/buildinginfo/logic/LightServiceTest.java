@@ -3,9 +3,12 @@ package pl.put.poznan.buildinginfo.logic;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.internal.util.reflection.FieldSetter;
+import org.mockito.MockitoAnnotations;
+import org.springframework.test.context.junit4.SpringRunner;
 import pl.put.poznan.buildinginfo.model.Building;
 import pl.put.poznan.buildinginfo.model.LightInformation;
 import pl.put.poznan.buildinginfo.model.LocalizationType;
@@ -14,12 +17,17 @@ import javax.annotation.Resource;
 
 import java.math.BigDecimal;
 
-
+@RunWith(SpringRunner.class)
 class LightServiceTest {
 
     @InjectMocks
     @Resource
     LightService cut;
+
+    @Mock
+    LocalizationFinder localizationFinder;
+
+    Building building;
 
     private static final BigDecimal light = new BigDecimal("200");
     private static final String id = "2";
@@ -28,29 +36,27 @@ class LightServiceTest {
     @BeforeEach
     public void setUp() {
         cut = new LightService();
-    }
 
-    @Test
-    void getPowerShouldReturnObjectWithProperNameAndType() throws NoSuchFieldException {
-        //mock
-        Building mockedBuilding = Mockito.mock(Building.class);
-        Mockito.when(mockedBuilding.calculateLight()).thenReturn(light);
-        Mockito.when(mockedBuilding.getName()).thenReturn("Name");
+        MockitoAnnotations.initMocks(this);
 
-        LocalizationFinder localizationFinder = Mockito.mock(LocalizationFinder.class);
+        building = Mockito.mock(Building.class);
+        Mockito.when(building.calculateLight()).thenReturn(light);
+        Mockito.when(building.getName()).thenReturn("Name");
+
         Mockito.when(localizationFinder
                 .findLocalizationInBuilding(Mockito.any(), Mockito.eq(LocalizationType.BUILDING),
                         Mockito.eq("2")))
-                .thenReturn(mockedBuilding);
+                .thenReturn(building);
+    }
 
-        FieldSetter.setField(cut, cut.getClass().getDeclaredField("localizationFinder"), localizationFinder);
-
+    @Test
+    void getPowerShouldReturnObjectWithProperNameAndType() {
         //when
-        LightInformation actual = cut.calculateLight(mockedBuilding, id, LocalizationType.BUILDING);
+        LightInformation actual = cut.calculateLight(building, id, LocalizationType.BUILDING);
 
         //then
-        Mockito.verify(mockedBuilding).calculateLight();
-        Mockito.verify(localizationFinder).findLocalizationInBuilding(mockedBuilding, LocalizationType.BUILDING, id);
+        Mockito.verify(building).calculateLight();
+        Mockito.verify(localizationFinder).findLocalizationInBuilding(building, LocalizationType.BUILDING, id);
 
         Assertions.assertEquals(actual.getName(), "Name");
         Assertions.assertEquals(actual.getId(), id);
