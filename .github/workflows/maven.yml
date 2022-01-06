@@ -10,8 +10,9 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
 
+  set-up:
+  
     runs-on: ubuntu-latest
 
     steps:
@@ -22,10 +23,26 @@ jobs:
         java-version: '11'
         distribution: 'adopt'
         cache: maven
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+      
+  test:
+  
+    runs-on: ubuntu-latest
+
+    steps:
     - name: Test with Maven
       run: mvn -B test --file pom.xml
+  deploy:
+  
+    runs-on: ubuntu-latest
+  
+    steps:
     - name: 'Upload Artifact'
       uses: actions/upload-artifact@v2
       with:
