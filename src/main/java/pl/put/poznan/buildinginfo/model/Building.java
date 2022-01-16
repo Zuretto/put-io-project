@@ -6,6 +6,7 @@ import pl.put.poznan.buildinginfo.logic.Localization;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -133,5 +134,18 @@ public class Building implements Localization {
     @Override
     public BigDecimal calculateHeight(){
         return this.aboveSurface.add(floors.stream().map(Floor::calculateHeight).reduce(BigDecimal.ZERO,BigDecimal::add));
+    }
+
+    /**
+     * method responsible for returning Rooms exceeding energy limit
+     * @return List of rooms exceeding energy limit
+     */
+    @Override
+    public List<Room> checkEnergyLimit(BigDecimal limit){
+        List<Room>roomsOverLimit = new ArrayList<>();
+        for (Floor f : this.floors) {
+            roomsOverLimit.addAll(f.checkEnergyLimit(limit));
+        }
+        return roomsOverLimit;
     }
 }

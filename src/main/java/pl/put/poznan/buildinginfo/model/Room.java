@@ -6,6 +6,8 @@ import pl.put.poznan.buildinginfo.logic.Localization;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Data Transfer Object class for room
@@ -33,6 +35,9 @@ public class Room implements Localization {
 
     @JsonProperty("height")
     private BigDecimal height;
+
+    @JsonProperty("energy")
+    private BigDecimal energy;
 
 
     public String getId() {
@@ -141,7 +146,8 @@ public class Room implements Localization {
      */
     @Override
     public BigDecimal calculateEnergy() {
-        return this.heating.divide(BigDecimal.valueOf(this.cube), 5, RoundingMode.HALF_UP);
+        this.energy =  this.heating.divide(BigDecimal.valueOf(this.cube), 5, RoundingMode.HALF_UP);
+        return this.energy;
     }
 
     /**
@@ -160,4 +166,15 @@ public class Room implements Localization {
      */
     @Override
     public BigDecimal calculateHeight(){return this.height;}
+
+    /**
+     * method responsible for returning Rooms exceeding energy limit
+     * @return List of rooms exceeding energy limit
+     */
+    @Override
+    public List<Room> checkEnergyLimit(BigDecimal limit){
+        List<Room>roomsOverLimit = new ArrayList<>();
+        if (limit.compareTo(this.calculateEnergy()) < 0) {roomsOverLimit.add(this);}
+        return roomsOverLimit;
+    }
 }

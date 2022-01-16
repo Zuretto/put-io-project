@@ -1,6 +1,9 @@
 package pl.put.poznan.buildinginfo.logic;
 
+import pl.put.poznan.buildinginfo.model.Room;
+
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * Interface which is a Component in Composite project pattern
@@ -52,9 +55,16 @@ public interface Localization {
     String getName();
 
     /**
-     * method responsible for caluclating height of the localization
+     * method responsible for calculating height of the localization
      *
      * @return BigDecimal height of the localization
      */
     BigDecimal calculateHeight();
+
+    /**
+     * method responsible for checking if rooms exceed energy limit
+     *
+     * @return List of rooms that exceed energy limit
+     */
+    List<Room> checkEnergyLimit(BigDecimal limit);
 }
